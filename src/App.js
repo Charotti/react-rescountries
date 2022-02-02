@@ -1,4 +1,5 @@
 import React from "react";
+import "./components/Button.js";
 
 class App extends React.Component {
   constructor() {
@@ -27,6 +28,15 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <button onClick text="France">
+          France
+        </button>
+        <button onClick text="Brazil">
+          Brazil
+        </button>
+        <button onClick text="Croatia">
+          Croatia
+        </button>
         <p>{this.state.name}</p>
         <p>{this.state.capital}</p>
         <img src={this.state.flag} alt="drapeau" />

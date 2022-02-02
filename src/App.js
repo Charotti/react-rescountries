@@ -1,25 +1,40 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "",
+      capital: "",
+      flag: "",
+      region: "",
+    };
+  }
+  componentDidMount() {
+    fetch("https://restcountries.com/v3.1/name/france")
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          name: res[0].name.common,
+          capital: res[0].capital,
+          flag: res[0].flags.png,
+          region: res[0].region,
+        });
+      });
+    // console.log(this.state.flags);
+  }
+  render() {
+    return (
+      <div>
+        <p>{this.state.name}</p>
+        <p>{this.state.capital}</p>
+        <img src={this.state.flag} alt="drapeau" />
+        <p>{this.state.population}</p>
+        <p>{this.state.region}</p>
+      </div>
+    );
+  }
 }
 
 export default App;
